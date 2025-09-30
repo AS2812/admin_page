@@ -1,0 +1,29 @@
+﻿{
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "dist" }
+    },
+    {
+      "src": "server/index.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "server/index.js" },
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/index.html" }
+  ],
+  "env": {
+    "VITE_SUPABASE_URL": "@vite_supabase_url",
+    "VITE_SUPABASE_ANON_KEY": "@vite_supabase_anon_key",
+    "SUPABASE_SERVICE_ROLE_KEY": "@supabase_service_role_key",
+    "VITE_MAPTILER_KEY": "@maptiler_key",
+    "SENTRY_DSN": "@sentry_dsn",
+    "SENTRY_DSN_SERVER": "@sentry_dsn_server",
+    "VITE_PLAUSIBLE_DOMAIN": "@plausible_domain",
+    "VITE_GA_MEASUREMENT_ID": "@ga_measurement_id"
+  }
+}

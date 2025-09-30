@@ -1,0 +1,124 @@
+.map-card{
+  position: relative;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: var(--field-shadow);
+}
+
+/* Faux map */
+.map-canvas{
+  position: relative;
+  height: 520px;
+  border-radius: 10px;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(2,6,23,.04), rgba(2,6,23,.04)),
+    radial-gradient(ellipse at 70% 30%, #c8edc3 0 20%, transparent 21%),
+    radial-gradient(ellipse at 30% 70%, #b9d9ff 0 18%, transparent 19%),
+    linear-gradient(135deg, #eee 25%, transparent 25%) 0 0/40px 40px,
+    linear-gradient(315deg, #eee 25%, transparent 25%) 0 0/40px 40px,
+    #f6f7f9;
+}
+:root[data-theme="dark"] .map-canvas{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.03)),
+    radial-gradient(ellipse at 70% 30%, #113d10 0 20%, transparent 21%),
+    radial-gradient(ellipse at 30% 70%, #0b2a4a 0 18%, transparent 19%),
+    linear-gradient(135deg, #172031 25%, transparent 25%) 0 0/40px 40px,
+    linear-gradient(315deg, #172031 25%, transparent 25%) 0 0/40px 40px,
+    #0e1726;
+}
+
+/* Pins */
+.pin{ position:absolute; transform: translate(-50%, -100%); }
+.pin-dot{
+  width:10px; height:10px; border-radius:999px;
+  border:2px solid #fff; box-shadow:0 0 0 2px rgba(0,0,0,.15);
+  display:block; margin:0 auto 6px auto;
+}
+.pin-card{
+  background:#fff; color:#111; border-radius:10px;
+  padding:8px 10px; min-width: 220px; max-width: 320px;
+  box-shadow:0 8px 18px rgba(0,0,0,.15);
+  border:1px solid rgba(0,0,0,.08);
+}
+.pin-title{ font-weight:800; margin-bottom:4px; }
+.pin-meta{ display:flex; flex-wrap:wrap; gap:6px; align-items:center; font-weight:600; color:#374151; }
+.pin .sev{ font-weight:700; }
+:root[data-theme="dark"] .pin-card{ background:#ffffff; color:#111; }
+
+/* Dot colors (incidents & complaints) */
+.pin--low .pin-dot{ background:#60a5fa; }
+.pin--medium .pin-dot{ background:#f59e0b; }
+.pin--high .pin-dot{ background:#ef4444; }
+.pin--critical .pin-dot{ background:#be123c; }
+
+.pin--cat.pin--infrastructure .pin-dot{ background:#4ade80; }
+.pin--cat.pin--road           .pin-dot{ background:#f97316; }
+.pin--cat.pin--electric       .pin-dot{ background:#38bdf8; }
+.pin--cat.pin--sanitation     .pin-dot{ background:#a78bfa; }
+
+/* LEGEND — base styles (background now controlled inline from TSX) */
+.map-legend{
+  position:absolute;
+  right:16px; bottom:16px;
+  background:var(--card-bg);
+  color: var(--text);
+  border:1px solid var(--card-border);
+  border-radius:12px;
+  padding:10px 12px;
+  box-shadow: var(--field-shadow);
+  min-width:210px;
+}
+.legend-title{ font-weight:800; margin-bottom:8px; }
+.map-legend ul{ list-style:none; padding:0; margin:0; display:grid; gap:6px; }
+.map-legend li{ display:flex; align-items:center; gap:8px; font-weight:700; color:var(--text); }
+.map-legend .swatch{ width:14px; height:14px; border-radius:4px; display:inline-block; }
+
+/* Legend swatches */
+.leg--low .swatch{ background:#60a5fa; }
+.leg--medium .swatch{ background:#f59e0b; }
+.leg--high .swatch{ background:#ef4444; }
+.leg--critical .swatch{ background:#be123c; }
+.leg--infra .swatch{ background:#4ade80; }
+.leg--road  .swatch{ background:#f97316; }
+.leg--electric .swatch{ background:#38bdf8; }
+.leg--san   .swatch{ background:#a78bfa; }
+
+/* ===== Map-only filter overrides (do NOT touch other pages) ===== */
+:root[data-theme="dark"] .map-filters .filter.pill{
+  --field-bg:#ffffff;
+  --card-border:rgba(0,0,0,.12);
+  --text:#111111;
+  --muted:#374151;
+  color-scheme: light;
+}
+
+/* Search input inside pills: keep text black always */
+.map-filters .filter.search input{
+  color:#111 !important;
+  -webkit-text-fill-color:#111 !important;
+  caret-color:#111;
+}
+
+/* Dropdown button + caret: keep value & caret black (max contrast) */
+.map-filters .dd-btn{
+  color:#111 !important;
+  -webkit-text-fill-color:#111 !important;
+  font-weight:700;
+  color-scheme: light !important;
+}
+.map-filters .filter .caret{
+  color:#111 !important;
+  fill:#111 !important;
+  opacity:1 !important;
+}
+
+/* Legend text always dark (title + items), regardless of theme */
+.map-legend,
+.map-legend .legend-title,
+.map-legend li {
+  color: #111 !important;
+}

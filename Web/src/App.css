@@ -1,0 +1,68 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* src/app.css */
+.page {
+  /* keeps your layout centered like your mock, not edge-to-edge */
+  max-width: 1280px;  /* tweak 1200~1360 to taste */
+  margin: 0 auto;
+  padding: 24px;      /* side padding so nothing gets cut */
+  box-sizing: border-box;
+}
+
+/* small screens: allow horizontal scroll for wide tables instead of clipping */
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.page-wrap {
+  padding: 20px 24px;   /* tiny in/out spacing */
+  max-width: 1400px;    /* stops it from being *too* wide */
+  margin: 0 auto;       /* centers the whole page */
+}
+

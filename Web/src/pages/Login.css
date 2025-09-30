@@ -1,0 +1,54 @@
+/* Improved border design for Admin Login */
+.login-card{
+  width: 320px;
+  max-width: 90vw;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(16, 24, 40, 0.06);
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+  box-sizing: border-box;
+}
+
+.login-card:hover{
+  box-shadow: 0 6px 16px rgba(16, 24, 40, 0.08);
+}
+
+.login-card:focus-within{
+  border-color: var(--brand-blue);
+  box-shadow: 0 0 0 3px rgba(1, 161, 231, 0.25), 0 6px 16px rgba(16, 24, 40, 0.08);
+}
+
+.login-input{
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-top: 8px;
+  background: var(--card);
+  color: var(--text);
+  outline: none;
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+  box-sizing: border-box;
+}
+
+.login-input:hover{
+  border-color: rgba(1, 161, 231, 0.30);
+}
+
+.login-input:focus{
+  border-color: var(--brand-blue);
+  box-shadow: 0 0 0 3px rgba(1, 161, 231, 0.25);
+}
+
+/* Submit button: consistent radius and focus ring */
+.login-submit{
+  width: 100%;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+.login-submit:focus{
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(1, 161, 231, 0.25);
+}

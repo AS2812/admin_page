@@ -1,0 +1,77 @@
+/* src/components/topbar.css */
+.topbar{
+  border-radius: 18px 18px 10px 10px;
+  padding: 14px 16px 8px;
+  background: linear-gradient(90deg,var(--brand-blue) 0%, var(--brand-purple) 50%, var(--brand-rose) 100%);
+  color:#fff;
+  box-shadow: 0 8px 30px rgba(2,6,23,.06);
+  width: 100%;
+}
+.topbar-row{ display:flex; align-items:center; gap:12px; }
+.topbar-brand{ font-weight:800; font-size:28px; letter-spacing:-.02em; }
+.topbar-tabs{ flex:1; display:flex; justify-content:center; gap:12px; }
+
+.pill{
+  display:inline-flex; align-items:center; gap:10px;
+  padding:10px 14px; border-radius:16px;
+  background:#ffffff; color:#0f5ea8;
+  border:2px solid #0ea5e9;
+  font-weight:700;
+}
+.pill--active{ background:#0ea5e9; color:#ffffff; border-color:#0ea5e9; }
+.pill:hover{ filter: brightness(.98); }
+
+.topbar-actions{ display:flex; gap:8px; }
+.smallbtn{
+  background:#ffffff; color:#0f172a;
+  border:1.5px solid rgba(255,255,255,.45);
+  padding:8px 12px; border-radius:12px; font-weight:700;
+}
+
+.topbar-strip{
+  height:8px; margin-top:8px; border-radius:8px;
+  background: linear-gradient(90deg,var(--brand-blue),var(--brand-purple),var(--brand-rose));
+}
+
+.topbar-actions {
+  display: flex;
+  gap: 8px;
+  margin-right: 30px;   /* <-- adjust this number for more space from the edge */
+}
+
+/* Remove rounding on the gradient header and avoid white showing at the right */
+.topbar,
+.topbar .topbar-bg,
+.topbar .bg-gradient {
+  border-radius: 0 !important;
+}
+
+/* If your gradient is a positioned child, extend it 1px to the right to kill subpixel seams */
+.topbar .topbar-bg,
+.topbar .bg-gradient {
+  position: absolute;
+  inset: 0 -1px 0 0;   /* extend 1px on the right only */
+  border-radius: 0 !important;
+  pointer-events: none; /* purely decorative */
+}
+
+/* Ensure the header clips correctly */
+.topbar { position: relative; overflow: hidden; }
+
+/* lock SpotnSend font only (even if the page switches to an Arabic font) */
+#brand-text{
+  font-family: "Montserrat","Segoe UI",system-ui,-apple-system,Arial,sans-serif !important;
+  font-weight: 800;
+  letter-spacing: .2px;
+  font-synthesis: none; /* avoid fake bold/italic substitutions */
+}
+
+.topbar-note{
+  display:flex;
+  align-items:center;
+  padding:8px 12px;
+  border-radius:12px;
+  background:rgba(255,255,255,0.18);
+  font-weight:600;
+}
+

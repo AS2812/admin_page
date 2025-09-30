@@ -1,0 +1,75 @@
+/* src/index.css */
+@font-face{
+  font-family: "Neue Montreal";
+  src: url("/fonts/NeueMontreal-Regular.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face{
+  font-family: "Neue Montreal";
+  src: url("/fonts/NeueMontreal-Bold.woff2") format("woff2");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face{
+  font-family: "Codec Pro";
+  src: url("/fonts/CodecPro-Regular.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face{
+  font-family: "Codec Pro";
+  src: url("/fonts/CodecPro-Bold.woff2") format("woff2");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);    /* default: latin stack */
+  overflow-x: hidden;
+}
+
+/* App main wrapper: consistent width and height across all pages */
+.app-main{
+  max-width: var(--page-max);
+  width: 100%;
+  margin: 12px auto;
+  padding: 0 var(--page-pad) 24px;
+  min-height: calc(100svh - 140px);
+  box-sizing: border-box;
+}
+
+/* ===== Font stacks ===== */
+:root{
+  --font-sans: "Neue Montreal", "Codec Pro", "Montserrat", Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-sans-ar: "IBM Plex Sans Arabic", "Cairo", "Noto Sans Arabic", system-ui, Arial, sans-serif;
+}
+/* When Arabic is active, swap to Arabic stack */
+html[data-lang="ar"] body { font-family: var(--font-sans-ar); }
+
+/* ===== Design tokens ===== */
+:root{
+  --brand-blue:#01a1e7; --brand-purple:#aa4b7f; --brand-rose:#eb3e50;
+
+  /* Layout */
+  --page-max: 1800px;
+  --page-pad: 6px;
+  --gap: 12px;
+
+  /* Light */
+  --bg:#ffffff; --card:#ffffff; --text:#0f172a; --muted:#5a606c; --border:#2a33411f;
+
+  /* Table zebra (light) */
+  --thead-bg:#eef2f6; --thead-fg:#1f2937;
+  --tbody-even:#f9fbfe; --tbody-odd:transparent; --tbody-border:#e9eef5;
+}
+
+/* Dark */
+html.dark{
+  --bg:#0b1220; --card:#0f172a; --text:#f1f5f9; --muted:#94a3b8; --border:#ffffff1f;
+
+  /* Table zebra (dark) */
+  --thead-bg:#0f2338; --thead-fg:#e2e8f0;
+  --tbody-even:rgba(255,255,255,0.06); --tbody-odd:transparent; --tbody-border:rgba(255,255,255,0.08);
+}
+

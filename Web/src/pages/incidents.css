@@ -1,0 +1,409 @@
+/* ===== Theme vars (match dashboard) ===== */
+:root{
+  --card-bg:#fff;
+  --card-border:rgba(0,0,0,.12);
+  --field-bg:#fff;
+  --field-shadow:0 1px 2px rgba(0,0,0,.05);
+  --field-ring:rgba(1,161,231,.35);
+  --text:#374151;        /* page text (dark grey) */
+  --muted:#6b7280;       /* labels/placeholders */
+  --thead-bg:rgba(2,6,23,.03);
+  --table-border:rgba(2,6,23,.06);
+}
+:root[data-theme="dark"]{
+  --card-bg:#0b1220;
+  --card-border:#1f2937;
+  --field-bg:#0f172a;
+  --field-shadow:0 0 0 rgba(0,0,0,0);
+  --field-ring:rgba(1,161,231,.5);
+  --text:#d1d5db;        /* page text stays light */
+  --muted:#9ca3af;
+  --thead-bg:rgba(255,255,255,.05);
+  --table-border:rgba(255,255,255,.08);
+}
+
+/* ===== Filters Row ===== */
+.filters-row{
+  display:grid;
+  grid-template-columns: 1fr 220px 220px 240px;
+  gap:16px;
+  margin:16px 0 18px;
+}
+
+/* In DARK MODE, make ONLY the filter pills light with dark text */
+:root[data-theme="dark"] .filters-row{
+  --field-bg:#ffffff;                 /* pill background becomes white */
+  --card-border:rgba(0,0,0,.12);
+  --text:#111111;                     /* pill text becomes black */
+  --muted:#374151;                    /* labels/placeholders darker */
+}
+
+/* pill base (used by search and custom dropdown button) */
+.filter.pill{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  height:46px;
+  padding:0 14px;
+  background:var(--field-bg);
+  border:1px solid var(--card-border);
+  border-radius:999px;
+  box-shadow:var(--field-shadow);
+  position:relative;
+  color:var(--text);
+}
+.filter.pill:focus-within{
+  box-shadow:
+    0 0 0 3px var(--field-ring),
+    var(--field-shadow);
+}
+
+/* ===== Search input ===== */
+.filter.search .icon{
+  opacity:.65;
+  font-size:18px;
+  color:var(--muted);
+}
+.filter.search input{
+  flex:1;
+  border:0; outline:0;
+  font-weight:600;
+  background:transparent;
+  color:var(--text);
+}
+/* always keep search text dark, even in dark mode */
+.filters-row .filter.search input{
+  color:#111 !important;
+  -webkit-text-fill-color:#111 !important;
+  caret-color:#111;
+}
+.filter.search input::placeholder{ color:var(--muted); font-weight:500; }
+
+/* ===== Custom Dropdown (Status / Severity / Date Range) ===== */
+.dd { position: relative; }
+.dd .label{
+  font-weight:700; white-space:nowrap; color:var(--muted);
+}
+.dd-btn{
+  flex:1;
+  min-width: 0;
+  text-align: left;
+  border:0; outline:0; background:transparent;
+  font-weight:700;
+  color:var(--text);
+  display:flex; align-items:center; justify-content:space-between;
+}
+/* when value === 'all', hide the value text but keep caret aligned */
+.dd--empty .dd-btn{ color:transparent; text-shadow:none; }
+
+/* caret */
+.dd .caret{
+  opacity:.7;
+  margin-inline-start:8px;
+  pointer-events:none;
+}
+/* always keep caret + selected value text black for max contrast */
+.filters-row .dd-btn{
+  color:#111 !important;
+  -webkit-text-fill-color:#111 !important;
+  font-weight:700;
+  color-scheme:light !important;
+}
+.filters-row .filter .caret{
+  color:#111 !important;
+  fill:#111 !important;
+  opacity:1 !important;
+}
+
+/* popup menu (always white with black text for readability) */
+.dd-menu{
+  position:absolute;
+  top:calc(100% + 6px);
+  left:0;
+  z-index:50;
+  min-width:100%;
+  max-height:260px;
+  overflow:auto;
+  background:#fff;
+  color:#111;
+  border:1px solid rgba(0,0,0,.12);
+  border-radius:12px;
+  box-shadow:
+    0 10px 20px rgba(0,0,0,.18),
+    0 2px 6px rgba(0,0,0,.08);
+  padding:6px;
+}
+.dd-item{
+  padding:10px 12px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:700;
+}
+.dd-item:hover,
+.dd-item.is-active{ background:#f3f4f6; } /* light gray hover */
+.dd-item.is-selected{
+  outline:2px solid #01a1e7;
+  outline-offset:0;
+}
+
+/* RTL: anchor menu to the right and align text */
+html[data-lang="ar"] .dd-menu{
+  right:0; left:auto; text-align:right;
+}
+
+/* ===== Filters row: tightline layout to match Users page ===== */
+.filters-row.filters-row--tightline{
+  display:flex; align-items:center; gap:8px; flex-wrap:wrap; width:100%;
+}
+.filter.pill.search.search--long{
+  flex:1 1 380px; min-width:260px;
+}
+.filters-group{
+  display:flex; align-items:center; gap:8px; flex:0 1 auto;
+}
+.filters-group .dd.filter{
+  flex:0 1 160px; min-width:150px;
+}
+.add-new-fixed{
+  flex:0 0 150px; height:38px;
+  display:inline-flex; align-items:center; justify-content:center; gap:6px;
+  white-space:nowrap;
+}
+
+/* ===== Table ===== */
+.table-wrap{ width:100%; overflow-x:auto; }
+.table{ width:100%; border-collapse:collapse; background:transparent; }
+.table th, .table td{
+  padding:12px 14px;
+  border-bottom:1px solid var(--table-border);
+  text-align:left;
+  color:var(--text);
+}
+.table thead th{
+  background:var(--thead-bg);
+  font-weight:700;
+  white-space:normal;
+}
+.table thead th:last-child,
+.table tbody td:last-child{ min-width:180px; } /* date+time column */
+
+/* ===== Severity chips ===== */
+.sev{
+  display:inline-block;
+  padding:2px 10px;
+  border-radius:999px;
+  font-weight:700;
+  font-size:.9rem;
+  line-height:1.2;
+}
+/* severity colors to match dashboard chips */
+.sev--critical{ background:rgba(235,62,80,.16); color:#eb3e50; }
+.sev--high{     background:rgba(255,49,49,.16); color:#ff3131; }
+.sev--medium{   background:rgba(255,172,51,.18); color:#b45309; }
+.sev--low{      background:rgba(1,161,231,.16); color:#01a1e7; }
+
+/* status */
+.tag--verified{ background:rgba(16,185,129,.14); color:#0f766e; }  /* emerald */
+.tag--pending { background:rgba(234,179,8,.14);  color:#b45309; }  /* amber */
+.tag--banned  { background:rgba(239,68,68,.14);  color:#dc2626; }  /* red */
+
+/* active */
+.tag--ok{ background:rgba(59,130,246,.14); color:#1d4ed8; }        /* blue */
+.tag--no{ background:rgba(156,163,175,.18); color:#374151; }       /* gray */
+
+/* keep actions readable */
+.actions-cell{ white-space:nowrap; }
+
+/* --------------------------- */
+/* Users modal (details/edit)  */
+/* --------------------------- */
+.users-modal__backdrop{
+  position:fixed; inset:0; background:rgba(0,0,0,.35);
+  display:flex; align-items:center; justify-content:center;
+  z-index:50;
+}
+
+.users-modal{
+  width:min(820px, 96vw);
+  max-height:90vh;
+  overflow:auto;
+  border-radius:16px;
+  background:var(--surface, #fff);
+  color:var(--text, #111827);
+  box-shadow:0 10px 30px rgba(0,0,0,.2);
+  padding:16px 16px 12px;
+  border:1px solid rgba(15,23,42,.08);
+}
+
+/* Light mode (inherit from app; no !important) */
+html:not(.dark) .users-modal,
+body:not(.dark) .users-modal,
+html[data-theme="light"] .users-modal,
+body[data-theme="light"] .users-modal {
+  background:#ffffff;
+  color:#111827;
+  border:1px solid rgba(15,23,42,.08);
+}
+
+/* Dark mode */
+html.dark .users-modal,
+body.dark .users-modal,
+html[data-theme="dark"] .users-modal,
+body[data-theme="dark"] .users-modal {
+  background:#0b0f14;
+  color:#e5e7eb;
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.users-modal__header{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  padding:4px 4px 8px;
+  border-bottom:1px solid var(--border, rgba(0,0,0,.08));
+}
+.users-modal__title{
+  display:flex; gap:10px; align-items:center; font-weight:800; font-size:1.05rem;
+}
+.users-modal__badges{ display:flex; gap:8px; align-items:center; }
+
+.users-modal__close{
+  border:none; background:transparent; font-size:1.4rem; line-height:1;
+  cursor:pointer; opacity:.8; color:#111827;
+}
+.users-modal__close:hover{ opacity:1; }
+
+/* Dark-mode close color */
+html.dark .users-modal__close,
+body.dark .users-modal__close,
+html[data-theme="dark"] .users-modal__close,
+body[data-theme="dark"] .users-modal__close { color:#e5e7eb; }
+
+/* content */
+.users-modal__content{
+  padding:12px 4px;
+  display:grid; gap:12px;
+}
+@media (min-width: 700px){
+  .users-modal__content{ grid-template-columns:1fr 1fr; }
+}
+
+.users-field{ display:flex; flex-direction:column; gap:6px; }
+.users-field .label{ font-size:.86rem; opacity:.7; }
+.users-field .value{
+  font-size:.95rem; font-weight:600;
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+
+/* id images grid */
+.users-idgrid{
+  display:grid; grid-template-columns:1fr 1fr; gap:10px;
+}
+.users-idimg{
+  width:100%; height:140px; object-fit:cover;
+  border-radius:12px; border:1px solid var(--border, rgba(0,0,0,.08));
+}
+
+/* footer actions */
+.users-modal__footer{
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  padding-top:10px; border-top:1px solid var(--border, rgba(0,0,0,.08));
+}
+
+/* --------------------------- */
+/* Buttons                     */
+/* --------------------------- */
+.btn{
+  --primary:#01a1e7; --danger:#eb3e50; --ok:#16a34a; --muted:#e5e7eb;
+  display:inline-flex; align-items:center; justify-content:center;
+  gap:8px; padding:8px 12px; border-radius:10px; border:1px solid transparent;
+  font-weight:700; cursor:pointer; white-space:nowrap;
+}
+.btn:disabled{ opacity:.6; cursor:not-allowed; }
+.btn--primary{ background:var(--primary); color:#fff; }
+.btn--outline{ background:transparent; border-color:var(--muted); }
+.btn--success{ background:rgba(22,163,74,.12); color:#15803d; }
+.btn--danger{ background:rgba(235,62,80,.12); color:#eb3e50; }
+.btn--warning{ background:rgba(234,179,8,.14); color:#b45309; }
+
+/* --------------------------- */
+/* Inline edit inputs          */
+/* --------------------------- */
+.users-form input, .users-form select{
+  width:100%;
+  border:1px solid var(--border, rgba(0,0,0,.12));
+  background:transparent; color:inherit;
+  border-radius:10px; padding:8px 10px; font-size:.95rem;
+  box-sizing:border-box;
+}
+.users-form input[type="number"]::-webkit-outer-spin-button,
+.users-form input[type="number"]::-webkit-inner-spin-button{
+  -webkit-appearance:none; margin:0;
+}
+.users-form input[type="number"]{ appearance:textfield; }
+
+/* Make the native OPTION list readable in dark mode (scoped to modal only) */
+html.dark .users-modal .users-form select option,
+body.dark .users-modal .users-form select option,
+html[data-theme="dark"] .users-modal .users-form select option,
+body[data-theme="dark"] .users-modal .users-form select option{
+  background:#0b0f14;
+  color:#e5e7eb;
+}
+
+/* --------------------------- */
+/* Filters row (unchanged)     */
+/* --------------------------- */
+.filters-row.filters-row--tightline{
+  display:flex; align-items:center; gap:8px; flex-wrap:wrap; width:100%;
+}
+.filter.pill.search.search--long{ flex:1 1 380px; min-width:260px; }
+.filters-row .filters-group{ display:flex; align-items:center; gap:8px; flex:0 1 auto; }
+.filters-row .filters-group .dd.filter{ flex:0 1 160px; min-width:150px; }
+.add-new-fixed{
+  flex:0 0 150px; height:38px;
+  display:inline-flex; align-items:center; justify-content:center; gap:6px;
+  white-space:nowrap;
+}
+/* Small field layout inside the modal */
+.incident-field{
+  display:flex; flex-direction:column; gap:4px;
+}
+.incident-field .label{
+  font-size:.86rem; opacity:.7;
+}
+.incident-field .value{
+  font-weight:600;
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+
+/* Minimal confirm dialog (reuses Users modal look) */
+.confirm-modal__backdrop{
+  position:fixed; inset:0; background:rgba(0,0,0,.35);
+  display:flex; align-items:center; justify-content:center;
+  z-index:60;
+}
+.confirm-modal{
+  width:min(420px, 94vw);
+  border-radius:14px;
+  background:var(--surface, #fff);
+  color:var(--text, #111827);
+  border:1px solid rgba(15,23,42,.08);
+  box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+html.dark .confirm-modal,
+body.dark .confirm-modal,
+html[data-theme="dark"] .confirm-modal,
+body[data-theme="dark"] .confirm-modal{
+  background:#0b0f14;
+  color:#e5e7eb;
+  border:1px solid rgba(255,255,255,.08);
+}
+.confirm-modal__header,
+.confirm-modal__footer{ padding:12px 14px; }
+.confirm-modal__body{ padding:8px 14px 14px; }
+.confirm-modal__header{
+  display:flex; align-items:center; justify-content:space-between;
+  border-bottom:1px solid rgba(0,0,0,.08);
+}
+html.dark .confirm-modal__header{
+  border-bottom:1px solid rgba(255,255,255,.08);
+}

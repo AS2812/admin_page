@@ -1,0 +1,217 @@
+/* src/pages/dashboard.css */
+
+/* provide a universal numeric font stack we can reuse */
+:root{
+  --font-num: "Montserrat", var(--font-sans-ar), var(--font-sans);
+}
+
+/* Wider page, no horizontal wiggle */
+.page{
+  max-width: var(--page-max);
+  width: 100%;
+  box-sizing: border-box;
+  margin: 12px auto;
+  padding: 0 var(--page-pad);
+}
+
+/* KPI cards */
+.kpis{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap);
+  margin-top: var(--gap);
+}
+.card{
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  background: var(--card);
+  padding: 12px;
+}
+.strip{
+  height: 3px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--brand-blue), var(--brand-rose));
+  margin: -12px -12px 10px -12px;
+}
+.kpi-title{ color: var(--muted); font-size: 16px; font-weight: 700; }
+.kpi-value{
+  margin-top: 6px; font-weight: 800; font-size: 40px; letter-spacing: -0.02em;
+  font-family: var(--font-num);                 /* same numerals EN/AR */
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* Grids */
+.grid2{  display:grid; grid-template-columns: 1.1fr 1fr; gap: var(--gap); margin-top: var(--gap); }
+.grid2b{ display:grid; grid-template-columns: 1.2fr .8fr; gap: var(--gap);  margin-top: var(--gap); }
+.title{  font-weight: 800; font-size: 20px; margin-bottom: 8px; color: var(--text); }
+
+/* === Tables: equal columns + visible gridlines on BOTH tables === */
+.table{
+  width: 100%;
+  table-layout: fixed;             /* equal width columns */
+  border-collapse: collapse;       /* enables gridlines */
+  border-radius: 14px;
+  overflow: hidden;                /* keep rounded corners */
+  font-size: 14px;
+}
+
+/* Header (theme-aware) */
+.table thead th{
+  background: var(--thead-bg);
+  color: var(--thead-fg);          /* dark in light, light in dark */
+  font-weight: 700;
+  padding: 8px 10px;
+  width: calc(100% / 6);           /* 6 equal columns */
+  white-space: normal;             /* allow wrap so “Reported at” shows fully */
+  line-height: 1.2;
+}
+
+/* Force the last column (times) to use the numeric font */
+.table thead th:last-child,
+.table tbody td:last-child{
+  font-family: var(--font-num);
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* Body cells */
+.table tbody td{
+  padding: 8px 10px;
+  color: var(--text);
+  white-space: nowrap;             /* keep rows in a single line */
+}
+
+/* Gridlines (both directions) */
+.table thead th,
+.table tbody td{
+  border-right: 1px solid var(--tbody-border);
+  border-bottom: 1px solid var(--tbody-border);
+}
+.table thead th:last-child,
+.table tbody td:last-child{
+  border-right: none;              /* no extra line on far right */
+}
+
+/* Zebra rows */
+.table tbody tr:nth-child(odd)  td{ background: var(--tbody-odd); }
+.table tbody tr:nth-child(even) td{ background: var(--tbody-even); }
+
+/* Long text handling for cells (headers are allowed to wrap) */
+.table td{
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Severity colors (exact hexes) */
+.sev{ font-weight: 700; }
+.sev--critical{ color: #eb3e50; }  /* Critical */
+.sev--high{     color: #ff3131; }  /* High */
+.sev--medium{   color: #ffac33; }  /* Medium */
+.sev--low{      color: #01a1e7; }  /* Low */
+
+/* Gap between the two stacked subtables in Recent Reports */
+.subtable + .subtable { margin-top: 12px; }
+
+/* Make numerals in the trend chart consistent as well */
+.trend svg text{
+  font-family: var(--font-num);
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* Map placeholder */
+.mapbox{
+  height: 300px;
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  background: repeating-linear-gradient(0deg, #f1f5f9, #f1f5f9 1px, transparent 1px, transparent 20px);
+}
+
+/* Report Details: labels left / values right (LTR),
+   and optional RTL flip ONLY for that card via .details.rtl */
+.details{ text-align: left; }
+.details .row{
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  align-items: start;
+  gap: 6px;
+  margin: 6px 0;
+}
+.details .label{ color: var(--muted); text-align: left; }
+
+/* Flip just the Details card when Arabic is active */
+.details.rtl { direction: rtl; text-align: right; }
+.details.rtl .label { text-align: right; }
+
+/* Details spacing — bigger & lower buttons */
+.details .fields{
+  min-height: 180px;    /* was 160 — pushes actions lower a bit */
+  padding-bottom: 8px;
+}
+.details .actions{
+  display: flex;
+  gap: 14px;            /* slightly larger gap between buttons */
+  margin-top: 36px;     /* was 24 — moves the buttons down */
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.btn{
+  padding: 12px 22px;   /* bigger buttons */
+  min-height: 46px;     /* taller */
+  min-width: 150px;     /* consistent width */
+  font-size: 15px;      /* slightly larger label */
+  border: 2px solid var(--border);
+  border-radius: 24px;  /* rounder corners */
+  background: var(--card);
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* Note entry styling within Details card */
+.incident-note{
+  margin-top: 16px;
+  display: grid;
+  gap: 8px;
+}
+.incident-note label{ color: var(--muted); font-weight: 700; }
+.incident-note textarea{
+  width: 100%;
+  min-height: 88px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--card);
+  color: var(--text);
+}
+.incident-note .btn{ align-self: start; }
+
+/* Highlight selected row in the Recent Reports table */
+.table tbody tr.is-selected td{
+  background: rgba(1,161,231,.12);
+}
+
+/* Responsive */
+@media (max-width: 980px){
+  .kpis{ grid-template-columns: 1fr 1fr; }
+  .grid2, .grid2b{ grid-template-columns: 1fr; }
+}
+
+/* utility class if you want to force numerals anywhere in JSX: className="numfont" */
+.numfont{
+  font-family: var(--font-num);
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* details text aligns with language without touching buttons */
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 16px;
+  margin-top: 8px;
+}
+.details-grid > div { display:flex; justify-content:space-between; gap:16px; }
+.details-grid[dir="ltr"] dt { text-align:left; }
+.details-grid[dir="ltr"] dd { text-align:right; }
+.details-grid[dir="rtl"] dt { text-align:right; }
+.details-grid[dir="rtl"] dd { text-align:left; }
+
+.details-actions { margin-top:14px; display:flex; gap:10px; }
