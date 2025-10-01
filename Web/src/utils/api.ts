@@ -6,7 +6,7 @@ export type ReportPatch = {
   ttl_minutes_override?: number | null;
 };
 
-const API_BASE = (import.meta.env.VITE_API_BASE || import.meta.env.API_BASE_URL || "http://localhost:4000").replace(/\/$/, "");
+
 
 
 
