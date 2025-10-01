@@ -8,20 +8,7 @@ export type ReportPatch = {
 
 const API_BASE = (import.meta.env.VITE_API_BASE || import.meta.env.API_BASE_URL || "http://localhost:4000").replace(/\/$/, "");
 
-async function authorizedFetch(path: string, init: RequestInit = {}) {
-  const headers = new Headers(init.headers || {});
-  if (!headers.has("Content-Type")) headers.set("Content-Type", "application/json");
-  if (supabase) {
-    try {
-      const { data } = await supabase.auth.getSession();
-      const token = data.session?.access_token;
-      if (token) headers.set("Authorization", `Bearer ${token}`);
-    } catch (error) {
-      console.warn("resolve session token failed", error);
-    }
-  }
-  return fetch(`${API_BASE}${path}`, { ...init, headers });
-}
+
 
 // Existing report helpers (kept for pages using them)
 export async function updateReport(id: number, patch: ReportPatch) {
