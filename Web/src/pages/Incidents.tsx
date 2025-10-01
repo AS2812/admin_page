@@ -281,12 +281,7 @@ export default function IncidentPage(){
     }
   };
 
-  const undoDelete = () => {
-    if (!lastDeleted) return;
-    setRows(prev => [lastDeleted, ...prev]); // put back on top
-    setLastDeleted(null);
-    setUndoVisible(false);
-  };
+ 
 
   const enterEdit = () => {
     if (!isAdmin) { console.warn("edit blocked: non-admin"); return; }
