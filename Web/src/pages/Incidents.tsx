@@ -154,7 +154,6 @@ export default function IncidentPage(){
   // delete confirm + undo
   const [confirmDeleteOpen, setConfirmDeleteOpen] = useState(false);
   const [lastDeleted, setLastDeleted] = useState<Row|null>(null);
-  const [undoVisible, setUndoVisible] = useState(false);
 
   // filters
   const [q, setQ] = useState("");
