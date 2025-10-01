@@ -1,0 +1,10 @@
+[build]
+  base = "Web"
+  publish = "Web/dist"
+  command = "npm ci && npm run build"
+
+[build.environment]
+  # Choose a known-good v22.x. 22.18.0 is widely deployed.
+  NODE_VERSION = "22.18.0"
+  # Optional: surface versions in logs for sanity
+  NPM_FLAGS = "--version"
