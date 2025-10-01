@@ -709,7 +709,7 @@ function EditForm({
 }:{
   draft: Partial<UserRow> | null;
   setDraft: (p: Partial<UserRow>) => void;
-  labels: { name:string; gender:string; phone:string; email:string; radius:string; role:string; roleAdmin:string; roleUser:string; };
+  labels: { name:string; gender:string; phone:string; email:string; role:string; roleAdmin:string; roleUser:string; };
   G: { female:string; male:string; other:string };
 }){
   const d = draft ?? {};
@@ -756,16 +756,6 @@ function EditForm({
         />
       </FormRow>
       {/* reportsSubmitted field REMOVED from edit mode */}
-      <FormRow label={labels.radius}>
-        <input
-          type="number"
-          inputMode="decimal"
-          min={0}
-          step="0.5"
-          value={d.notificationRadiusKm ?? 0}
-          onChange={(e)=>update({ notificationRadiusKm: Number(e.target.value || 0) })}
-        />
-      </FormRow>
       {/* Save/Cancel are in the footer */}
     </div>
   );
