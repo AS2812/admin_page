@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import "./dashboard.css";
+import "./Dashboard.css";
 import { t, getLang } from "../i18n";
 import { type IncidentRow, type ComplaintRow } from "../utils/dataBus";
 import {
