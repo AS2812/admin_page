@@ -275,7 +275,7 @@ export default function IncidentPage(){
       setRows(prev => prev.filter(x => x.id !== selected.id));
       setSelected(null);
       setConfirmDeleteOpen(false);
-      setUndoVisible(false);
+      
     } catch (e) {
       console.warn("delete failed", e);
     }
