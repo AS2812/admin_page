@@ -6,7 +6,7 @@ import "./users.css";     // reuse form/button look inside modal
 // Supabase-only data flow
 import { fetchComplaints } from "../utils/supabaseQueries";
 import { updateReport, deleteReport, updateReportFields } from "../utils/api";
-import ReportCard from "../components/ReportCard";
+
 
 type MediaItem = { type: "image" | "video"; url: string; poster?: string };
 
